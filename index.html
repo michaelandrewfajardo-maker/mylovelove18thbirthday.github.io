@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18Th Birthday of my lovelove</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffcccc, #ffe6e6, #ffb3b3);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .floating-balloons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .balloon {
+            position: absolute;
+            font-size: 2em;
+            animation: floatUp 10s linear infinite;
+            opacity: 0.7;
+        }
+        .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .balloon:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .balloon:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .balloon:nth-child(5) { left: 50%; animation-delay: 8s; }
+        .balloon:nth-child(6) { left: 60%; animation-delay: 1s; }
+        .balloon:nth-child(7) { left: 70%; animation-delay: 3s; }
+        .balloon:nth-child(8) { left: 80%; animation-delay: 5s; }
+        .balloon:nth-child(9) { left: 90%; animation-delay: 7s; }
+        .balloon:nth-child(10) { left: 15%; animation-delay: 9s; }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1;
+        }
+        #front-page {
+            background: rgba(255, 230, 230, 0.9);
+            text-align: center;
+            transform: translateX(0);
+            backdrop-filter: blur(5px);
+        }
+        #letter-page {
+            background: rgba(255, 179, 179, 0.9);
+            text-align: center;
+            transform: translateX(100%);
+            backdrop-filter: blur(5px);
+        }
+        .moved #front-page {
+            transform: translateX(-100%);
+        }
+        .moved #letter-page {
+            transform: translateX(0);
+        }
+
+        header {
+            background: linear-gradient(45deg, #ff6600, #ff8533);
+            color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: #ff6600;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+        .letter {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            line-height: 1.8;
+            font-size: 1.1em;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 2px solid #ff6600;
+            position: relative;
+        }
+        .letter::after {
+            content: '💌';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.5;
+        }
+        .balloons {
+            font-size: 2.5em;
+            margin: 20px 0;
+            animation: bounce 3s infinite;
+        }
+        button {
+            background: linear-gradient(45deg, #ff6600, #ff8533);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.3em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        button:hover::before {
+            left: 100%;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        .image-container {
+            margin: 30px 0;
+            position: relative;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+        .image-container::after {
+            content: '🎂';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 2em;
+            animation: spin 4s linear infinite;
+        }
+
+        /* Keyframes */
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-balloons">
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+    </div>
+
+    <div id="front-page" class="page">
+        <header>
+            <h1>🎉 Happy Birthday loveloveee 🎉</h1>
+        </header>
+        <h2>Happy 18th birthday to my one and only lovelove</h2>
+        <div class="balloons">🎈🎈🎈</div>
+        <p>today is your birthday i hope mag enjoy ka dito</p>
+        <div class="image-container">
+            <img src="https://via.placeholder.com/400x300?text=Birthday+Cake" alt="Birthday Cake">
+            <!-- Replace with your own image URL or file path, e.g., src="cake.jpg" -->
+        </div>
+        <button onclick="moveForward()">my small Letter</button>
+    </div>
+
+    <div id="letter-page" class="page">
+        <h2>Happy 18th Birthday to my lovelove</h2>
+        <div class="letter">
+            <p>Dear lovelove,</p>
+            <p>Hello wifey, happy 18th birthday po, more birthday to come, please always take care of yourself love mashado akong malayo para alaagaan ka i hope gawin mo yon para sakin, you're 18 na another stage of your life sana mas maging independent kapa sa ngayon i hope dika pang hinaan ng loob sa mga problema na kakaharapin mo just always remember na I'm always here to support you and I'm always here proud of you, i hope matupad mo yung dreams mo i always support you kung san ka happy, sana mas lalo kang bumawi at hindi ka pumayag na hilahin ka pababa nung mga bagay na nakakasira ng araw mo, palagi mong unahin yung mga kelangan mi sa buhay gawin mkong last of your priorities kase im always here waiting for you at kaya kong intindihin na merong mga bagay na dapat unahin at yun ay ang future mo. be proud of yourself alam kong kayang kaya mo lahat kinakabahan ka lang i hope wag mong pag dudahan capabilities mo kase i know sobrang galing mo, you make me proud sa lahat kahit konting efforts parin yung pinapakita mo, be yourself and do your best is enough, hindi mo kelangan makipag kompitensya sa iba kase iba ka sa kanila i hope matuto ka sa mga pagkakamali mo from your past im not here to judge you or what I'm always here to support and loudly say na proud ako sayo, hindi to ai love i love making this lang po. i hope you know na si mula nung dumating ka palagi akong nasa tabi mo, yes malayo ako pero handa akong ipa feel sayo na im always here your number one fan, wag mong mashadong pagudin sarili mo love marami kang time para mag pahinga pag pagod pahinga lang ah bawal kang sumuko sa mga dreams mo.For me having you makes me proud of my self kase ang swerte ko lang na dumating ka, i know na kahit andami kong pag kukulang sayo nag stay ka. im always here para mapag rantan mo and mapag sabihan mo ng mga problema mo handa akong makinig kahit ano pa man yan, as your suitor I'll do my best para maging enough and makes you proud, so yon love enjoy your day okay lang dito ang baby mo just always remember na i always love youuuu, ILOVEYOUUU SOOO MUCHHH LOVELOVE KOOOO😙❤️✨</p>
+            
+        </div>
+        <div class="balloons">🎉🎉🎉</div>
+    </div>
+
+    <script>
+        function moveForward() {
+            document.body.classList.add('moved');
+        }
+    </script>
+</body>
+</html>
